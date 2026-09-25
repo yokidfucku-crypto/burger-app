@@ -9,8 +9,10 @@ Kuro connects to Discord and requests no privileged gateway intents.
 
 Available command:
 
-- `/roblox asset id:<asset ID>` downloads a publicly deliverable Roblox asset
-  and attaches the original file to Discord.
+- `/roblox asset id:<asset ID>` shows the asset's public catalog details and
+  thumbnail. It also attaches the original file when Roblox permits public
+  delivery for that asset. If `ROBLOX_OPEN_CLOUD_API_KEY` is configured, Kuro
+  also tries Roblox's authenticated Open Cloud Asset Delivery API.
 
 ## Create the Discord application
 
@@ -35,7 +37,10 @@ time to display a newly synchronized global command everywhere.
 2. Create a Railway project from that repository.
 3. In Railway **Variables**, add `DISCORD_BOT_TOKEN` with the bot token from the
    Discord Developer Portal.
-4. Deploy. Railway detects the Dockerfile and starts `python app.py`.
+4. To request authenticated asset downloads, create a Roblox Open Cloud API key
+   with asset read access and add it as `ROBLOX_OPEN_CLOUD_API_KEY`. The key can
+   only download assets that Roblox allows its owner to access.
+5. Deploy. Railway detects the Dockerfile and starts `python app.py`.
 
 A successful deployment logs `Connected to Discord as ...`.
 
@@ -47,3 +52,4 @@ Create a virtual environment, install `requirements.txt`, and set
 ```powershell
 python app.py
 ```
+
