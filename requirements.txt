@@ -1,1 +1,2 @@
 discord.py==2.6.4
+aiohttp>=3.7.4,<4
